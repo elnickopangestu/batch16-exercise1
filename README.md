@@ -1,2 +1,2 @@
-# batch16-final-project
-my final project
+# batch16-exercise1
+exercise1
