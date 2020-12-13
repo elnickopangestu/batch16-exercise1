@@ -1,129 +1,355 @@
-html {
+/* Created by Edhi7 */
+
+:root {
+    font-family: "Roboto", sans-serif;
+    font-size: 100%;
+}
+
+/* Make elements not get pushed in by for example box-shadows */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-body {
-    font-family: 'Handlee', cursive;
-    font-size: 13pt;
-    background-color: #efefef;
-    padding: 10px;
-    margin: 0;
+
+*:focus {
+    transform: scale(2);
 }
-h1 {
-    font-size: 15pt;
-    color: #20bcd5;
-    text-align: center;
-    padding: 18px 0 18px 0;
-    margin: 0 0 10px 0;
+
+main {
+    --color-main: #ea4335;
+    --color-main-light: #ffad42;
+    --color-main-dark: #bb4d00;
+    --color-secondary: #ffc107;
+    --color-background: #fafafa;
+    background-color: var(--color-background);
+    
+    /* To not hide content below bottom nav */
+    padding-bottom: 56px;
 }
-h1 span {
-    border: 4px dashed #20bcd5;
-    padding: 10px;
-}
-p {
-    padding: 0;
-    margin: 0;
-}
-.img-circle {
-    border: 3px solid white;
-    border-radius: 50%;
-}
-.section {
-    background-color: #fff;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-}
-#header {
-    background-image: url("https://elnickopangestu.github.io/photo_2019-01-19_15-20-17.jpg");
-    background-size: cover;
-}
-#header img {
-    display: block;
-    width: 80px;
-    height: 80px;
-    margin: auto;
-}
-#header p {
-    font-size: 25pt;
-    color: #3b464c;
-    padding-top: 5px;
-    margin: 0;
-    font-weight: bold;
-    text-align: center;
-}
-.quote {
-    font-size: 12pt;
-    text-align: right;
-    margin-top: 10px;
-}
-table {
+
+.bigTable {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
     width: 100%;
-    font-size: 11pt;
-}
-table, th, td {
-    border: 2px solid #cecece;
-    border-collapse: collapse;
-    text-align: center;
-    table-layout: fixed;
-}
-.selected {
-    background-color: #f36f48;
-    font-weight: bold;
-    color: white;
-}
-li {
-    margin-bottom: 15px;
-    font-weight: bold;
 }
 
-iframe, audio {
-    display: block;
-    margin: 0 auto;
-    border: 3px solid #3fb6b2;
-}
-hr {
-    border: 0;
-    height: 1px;
-    background: #f36f48;
-}
-form {
+.cellInTheMiddle {
+    display: table-cell;
+    vertical-align: middle;
     text-align: center;
-    margin-top: 0;
 }
-.submit {
-    background-color: #3fb6b2;
-    padding: 12px 45px;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #ffffff;
-    border: none;
-    outline: none;
+
+.smart-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-gap: 8px;
+    padding: 8px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.2);
+    transition: 375ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-title {
+    padding: 24px 16px 16px 16px;
+    font-size: 24px;
+    font-weight: thin;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.card-supporting-text {
+    padding: 16px 16px 24px 16px;
+    font-size: 14px;
+    font-weight: 450;
+    opacity: 0.8;
+}
+
+.card-actions {
+    padding: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.button,
+.bottom-navigation {
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.button {
+    color: var(--color-main);
+    border-radius: 2px;
+    position: relative;
+    height: 36px;
     margin: 0;
-    font-weight: bold;
-}
-.submit:hover {
-    background-color: #43a09d;
-}
-textarea {
-    height: 100px;
-}
-input, textarea {
-    margin-bottom: 10px;
-    font-size: 11pt;
-    padding: 15px 10px 10px;
-    border: 1px solid #cecece;
-    background-color: #efefef;
-    color: #787575;
-    border-radius: 5px;
-    width: 70%;
+    min-width: 64px;
+    padding: 0 24px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    overflow: hidden;
+    will-change: box-shadow;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1),
+        background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
-}
-.face {
-    transform: scale(0.4);
-    margin: 0 auto;
-    display: block;
-    margin-top: -35px;
-    margin-bottom: -25px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
 }
 
+.button:hover {
+    background-color: rgba(158, 158, 158, 0.2);
+}
+.button:focus:not(:active) {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+.button:active {
+    background-color: rgba(158, 158, 158, 0.4);
+}
+
+.button .flat-button:focus:not(:active) {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+.bottom-navigation {
+    overflow: hidden;
+    background-color: #ea4335;
+    transition: 375ms;
+    position: fixed;
+    height: 56px;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    font-size: 24px;
+    box-shadow: 0 3px 14px 3px rgba(0, 0, 0, 0.12),
+        0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-around;
+}
+
+.bottom-navigation .bottom-navigation-destination {
+    padding: 16px 0 16px 0;
+    float: left;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 12px;
+    transition: 225ms cubic-bezier(0.4, 0.2, 0, 1);
+    color: rgba(256, 256, 256, 0.87);
+    cursor: pointer;
+}
+
+.bottom-navigation .bottom-navigation-destination.active {
+    padding: 6px 12px 10px 12px;
+}
+
+.bottom-navigation-label {
+    opacity: 0;
+    transition: 225ms cubic-bezier(0.4, 0.2, 0, 1);
+}
+
+.bottom-navigation-destination.active .bottom-navigation-label {
+    font-size: 14px;
+    opacity: 1;
+}
+
+.bottom-navigation .bottom-navigation-destination .material-icons {
+    font-size: 24px;
+    z-index: 4;
+    margin-bottom: 4px;
+    display: block;
+}
+
+@media only screen and (max-width: 384px) {
+    .smart-grid {
+        display: block;
+        padding: 8px;
+    }
+
+    .smart-grid > .card {
+        margin-bottom: 8px;
+    }
+}
+
+@media only screen and (max-width: 671px) {
+    .smart-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    main {
+        padding-bottom: 56px;
+    }
+}
+
+@media screen and (min-width: 672px) {
+    .smart-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    /* Bottom nav becomes side nav when screen is too big */
+    .bottom-navigation {
+        width: 64px;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        right: initial;
+        box-shadow: 0 3px 14px 3px rgba(0, 0, 0, 0.12),
+            0 4px 15px rgba(0, 0, 0, 0.2);
+        display: initial;
+    }
+
+    .bottom-navigation .bottom-navigation-destination {
+        color: rgba(256, 256, 256, 0.54);
+        padding: 20px;
+    }
+
+    /* No need for label on side nav */
+    .bottom-navigation-label {
+        display: none;
+    }
+
+    .bottom-navigation .bottom-navigation-destination.active {
+        color: rgba(256, 256, 256, 0.87);
+        padding: 20px;
+    }
+
+    .bottom-navigation .bottom-navigation-destination .material-icons {
+        margin: 0;
+    }
+
+    /* <main> doesn't get covered by side nav */
+    main {
+        margin-left: 64px;
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .smart-grid {
+        padding: 56px;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Shamelessly stolen from materialize */
+.progress {
+    position: relative;
+    height: 4px;
+    display: block;
+    width: 100%;
+    background-color: var(--color-main);
+    background-clip: padding-box;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.progress .indeterminate {
+    background-color: rgba(64, 64, 64, 0.34);
+}
+.progress .indeterminate:before {
+    content: "";
+    position: absolute;
+    background-color: inherit;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    -webkit-animation: indeterminate 2.1s
+        cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+    -moz-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395)
+        infinite;
+    animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395)
+        infinite;
+}
+.progress .indeterminate:after {
+    content: "";
+    position: absolute;
+    background-color: inherit;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    -webkit-animation: indeterminate-short 2.1s
+        cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+    -moz-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1)
+        infinite;
+    animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1)
+        infinite;
+    -webkit-animation-delay: 1.15s;
+    -moz-animation-delay: 1.15s;
+    animation-delay: 1.15s;
+}
+
+@-webkit-keyframes indeterminate {
+    0% {
+        left: -35%;
+        right: 100%;
+    }
+    60% {
+        left: 100%;
+        right: -90%;
+    }
+    100% {
+        left: 100%;
+        right: -90%;
+    }
+}
+
+@keyframes indeterminate {
+    0% {
+        left: -35%;
+        right: 100%;
+    }
+    60% {
+        left: 100%;
+        right: -90%;
+    }
+    100% {
+        left: 100%;
+        right: -90%;
+    }
+}
+
+@-webkit-keyframes indeterminate-short {
+    0% {
+        left: -200%;
+        right: 100%;
+    }
+    60% {
+        left: 107%;
+        right: -8%;
+    }
+    100% {
+        left: 107%;
+        right: -8%;
+    }
+}
+
+@keyframes indeterminate-short {
+    0% {
+        left: -200%;
+        right: 100%;
+    }
+    60% {
+        left: 107%;
+        right: -8%;
+    }
+    100% {
+        left: 107%;
+        right: -8%;
+    }
+}
