@@ -1,44 +1,112 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My Blog</title>
-        <link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+        <title>Bottom navigation test</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
-    
     <body>
-        <!-- header start -->
-        <div id="header" class="section">
-            <img alt="" class="img-circle" src="https://elnickopangestu.github.io/photo_2019-02-01_21-41-25.jpg">
-            <p>Elnicko Pangestu</p>
-        </div>
-        <!-- header end -->
-        
-        <!-- About Me section start -->
-        <div class="section">
-            <h1><span>About Me</span></h1>
-            <p>
-                My name is Elnicko Pangestu I Am 25 years old, male, single, energetic and healthy. I was graduated from Trisakti university D1 majoring hospitality management. I am Pre Opening Team Of Grand Mercure Jakarta kemayoran. I would like to switch my career to digital tchnology for expand my experience. My personality as a hard worker  and fast learner type of person
-            </p>
-            <p class="quote">"life is short, make it great!"</p>
-        </div>
-        
-       <div class="section">
-            <h1><span>Contact Me</span></h1>
+        <!-- Please note: a bottomnav transforms into sidenav on bigger screens, all according to the Material Design guidelines -->
+    <main></main>
 
-                <circle cx="50" cy="50" r="50" fill="#FDD835"/>
-                <circle cx="30" cy="30" r="10" fill="#FFFFFF"/>
-                <circle cx="70" cy="30" r="10" fill="#FFFFFF"/>
-                <circle cx="30" cy="30" r="5" fill="#000000"/>
-                <circle cx="70" cy="30" r="5" fill="#000000"/>
-                <path d="M 30 70 q 20 20 40 0" stroke="#FFFFFF" stroke-width="5" fill="none" />
-            </svg>
-                 
-            <form>
-                <input name="name" placeholder="Name" type="text" required /><br/>
-                <input name="email" placeholder="Email" type="email" required /><br/>
-                <textarea name="message" placeholder="Message" required ></textarea>
-                <input type="submit" value="SEND" class="submit" />
-            </form>
-        </div>
-   </body>
+    <nav class="bottom-navigation">
+        <section class="bottom-navigation-destination" data-destination-color="#fbbc05">
+            <i class="material-icons">dashboard</i>
+            <span class="bottom-navigation-label">Dashboard</span>
+        </section>
+        <section class="bottom-navigation-destination active" data-destination-color="#ea4335">
+            <i class="material-icons">home</i>
+            <span class="bottom-navigation-label">Home</span>
+        </section>
+        <section class="bottom-navigation-destination" data-destination-color="#34a853">
+            <i class="material-icons">explore</i>
+            <span class="bottom-navigation-label">Explore</span>
+        </section>
+        <section class="bottom-navigation-destination" data-destination-color="#4285f4">
+            <i class="material-icons">account_box</i>
+            <span class="bottom-navigation-label">Account</span>
+        </section>
+    </nav>
+    
+    <script>
+        "use strict";
+
+function changeColor (click, that) {
+    // Set color of bottom nav
+    let target = $(that).parent(".bottom-navigation");
+    let color = $(that).attr("data-destination-color");
+    $(target).css("background-color", color);
+    // You'll have to add more of this in order to change the whole theme
+    $("main").css("--color-main", color);
+};
+
+function bottomNavClick (e, that) {
+    $(".active").removeClass("active");
+    $(that).addClass("active");
+    changeColor(e, that);
+};
+
+$(".bottom-navigation-destination").on("click", function(e) {
+    event.stopPropagation();
+    let x = $(this).hasClass("active");
+    bottomNavClick(e, this);
+    init(this, x);
+});
+
+function appendContent (x, label = "Home") {
+    $().html(" ");
+    for (let i = 0; i < 12; i++)
+        $(x).append(`<div class="card">
+            <section class="card-title"> ${label} </section>
+
+            <section class="card-supporting-text">
+                Card supporting text
+            </section>
+
+            <section class="card-actions">
+                <a class="button"> Button </a>
+            </section>
+        </div>`);
+};
+
+// To save the timeout in order to stop it from popping up after another destination is clicked
+var loadingDestination = null;
+
+function init (z, xy) {
+    var destinationName;
+    if (z)
+        destinationName = $(z)
+            .find(".bottom-navigation-label")
+            .text();
+    else
+        destinationName = $(
+            ".bottom-navigation-destination.active .bottom-navigation-label"
+        ).text();
+     
+    // Create a progress bar
+    let y = $("main").html(`<div class="progress">
+                            <div class="indeterminate"></div>
+                        </div>`);
+    
+    // Clear timeout if already running
+    if(loadingDestination)
+       window.clearTimeout(loadingDestination);
+    
+    // Simulate loading
+    loadingDestination = setTimeout(function() {
+        let x = $(`<article class="smart-grid"></article>`);
+        $(y).html(x);
+        let previousPadding = $(x).css("padding-top");
+        $(x).css({opacity: 0, paddingTop: "24px"});
+        appendContent(x, destinationName);
+        $(x).animate({opacity: 1, paddingTop: previousPadding}, 375);
+        loadingDestination = null;
+    }, 1300);
+};
+
+init();
+    </script>    
+    </body>
 </html>
